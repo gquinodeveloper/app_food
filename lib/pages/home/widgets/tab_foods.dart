@@ -19,6 +19,7 @@ class TabFoods extends StatelessWidget {
               labelStyle: TextStyle(
                 fontWeight: FontWeight.bold,
               ),
+              indicatorColor: AppTheme.kPrimary,
               unselectedLabelColor: Colors.black54,
               tabs: [
                 Tab(text: 'Featured'),
@@ -28,7 +29,7 @@ class TabFoods extends StatelessWidget {
             ),
           ),
           Container(
-            height: 400,
+            height: 450,
             child: TabBarView(
               children: [
                 TabFeatured(),

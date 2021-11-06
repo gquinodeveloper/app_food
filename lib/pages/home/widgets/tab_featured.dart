@@ -1,3 +1,4 @@
+import 'package:app_foods/pages/detail/detail_page.dart';
 import 'package:app_foods/theme/apptheme.dart';
 import 'package:flutter/material.dart';
 
@@ -30,14 +31,17 @@ class CardFood extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         children: [
           _cardTipo1(
+            context: context,
             title: "Tofu Noodle Soup",
             path: "assets/food_6.jpeg",
           ),
           _cardTipo1(
+            context: context,
             title: "Salad",
             path: "assets/food_5.jpeg",
           ),
           _cardTipo1(
+            context: context,
             title: "Past",
             path: "assets/food_2.jpeg",
           ),
@@ -47,38 +51,68 @@ class CardFood extends StatelessWidget {
   }
 
   Widget _cardTipo1({
+    required BuildContext context,
     required String title,
     required String path,
   }) {
-    return Container(
-      width: 240.0,
-      margin: EdgeInsets.only(left: 15.0),
-      padding: EdgeInsets.all(15.0),
-      height: double.infinity,
-      decoration: BoxDecoration(
-        color: Colors.red,
-        borderRadius: BorderRadius.circular(10.0),
-        image: DecorationImage(
-          image: AssetImage(path),
-          fit: BoxFit.cover,
-        ),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context).push(
+          PageRouteBuilder(
+            pageBuilder: (context, _, __) {
+              return DetailPage(
+                path: path,
+              );
+            },
+            transitionsBuilder: (_, animation, __, child) {
+              return FadeTransition(
+                opacity: animation,
+                child: child,
+              );
+            },
+            transitionDuration: Duration(milliseconds: 800),
+          ),
+        );
+      },
+      child: Stack(
         children: [
-          Text(
-            "World Food",
-            style: TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.w500,
+          Hero(
+            tag: "key_$path",
+            child: Container(
+              width: 240.0,
+              margin: EdgeInsets.only(left: 15.0),
+              padding: EdgeInsets.all(15.0),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10.0),
+                image: DecorationImage(
+                  image: AssetImage(path),
+                  fit: BoxFit.cover,
+                ),
+              ),
             ),
           ),
-          Text(
-            title,
-            style: TextStyle(
-              fontSize: 18.0,
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
+          Positioned(
+            top: 15.0,
+            left: 25.0,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "World Food",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                Text(
+                  title,
+                  style: TextStyle(
+                    fontSize: 18.0,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
             ),
           ),
         ],
@@ -108,7 +142,7 @@ class ListFood extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 200.0,
+      height: 250.0,
       //color: Colors.yellow,
       child: Column(
         children: [
@@ -121,6 +155,11 @@ class ListFood extends StatelessWidget {
             title: "Meat Ball Pizza",
             number: "3.4K",
             path: "assets/food_2.jpeg",
+          ),
+          _food(
+            title: "Soup",
+            number: "4.4K",
+            path: "assets/food_3.jpeg",
           ),
         ],
       ),

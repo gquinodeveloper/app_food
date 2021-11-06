@@ -1,6 +1,10 @@
+import 'package:app_foods/pages/detail/detail_page.dart';
+import 'package:app_foods/pages/detail/widgets/Directions.dart';
 import 'package:app_foods/pages/home/home_page.dart';
-import 'package:app_foods/pages/login_page.dart';
-import 'package:app_foods/pages/splash_page.dart';
+import 'package:app_foods/pages/login/login_page.dart';
+import 'package:app_foods/pages/profile/profile_page.dart';
+import 'package:app_foods/pages/splash/splash_page.dart';
+import 'package:app_foods/theme/apptheme.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -19,6 +23,10 @@ class MyApp extends StatelessWidget {
       home: SplashPage(),
       //home: LoginPage(),
       //home: HomePage(),
+      //home: ProfilePage(),
+      //home: DetailPage(),
+      //home: DetailTemp(),
+      //home: Directions(),
     );
   }
 }
